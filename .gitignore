@@ -1,0 +1,6 @@
+
+.DS_Store
+/settings.json
+/docker-compose.yaml
+
+/generated.env

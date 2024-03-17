@@ -1,0 +1,10 @@
+# This is a comment and should be ignored 
+# default: 5
+MyVar1=7
+
+# and this is a second block
+# with another variable and a prompt
+# default: world
+# prompt: What is your name
+NAME=
+
