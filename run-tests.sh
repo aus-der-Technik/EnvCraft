@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
+which expect || err "Expect not found" 1
 mkdir -p "${SCRIPT_DIR}/results"
 
 ErrCount=0
+TestCount=0
+
 function err(){
   local msg
   local exit
@@ -18,24 +20,33 @@ function err(){
   fi
 }
 
-which expect || err "Expect not found" 1
+function test(){
+  local src
+  local target
+  test=${1}
+  src=${2}
+  target=${3}
 
-rm -f "${SCRIPT_DIR}/results/.env.simple.result"
-expect "${SCRIPT_DIR}"/test.only-defaults.expect
-cmp -s "${SCRIPT_DIR}/samples/.env.simple.sample.expected_" "${SCRIPT_DIR}/results/.env.simple.result" \
-|| err "Generated file ${SCRIPT_DIR}/results/.env.simple.result differs from expected result."
+  TestCount=$(expr ${TestCount} + 1)
+  rm -f "${target}"
+  expect "${test}"
+  cmp -s "${src}" "${target}" \
+    || err "Generated file ${target} differs from expected result."
+}
 
-rm -f "${SCRIPT_DIR}/results/.env.with-comments.result"
-expect "${SCRIPT_DIR}"/test.with-comments.expect
-cmp -s "${SCRIPT_DIR}/samples/.env.with-comments.sample.expected" "${SCRIPT_DIR}/results/.env.with-comments.result" \
-|| err "Generated file ${SCRIPT_DIR}/results/.env.with-comments.result differs from expected result."
+# -----
+# Test Suite:
 
+test "${SCRIPT_DIR}/test.only-defaults.expect" "${SCRIPT_DIR}/samples/.env.simple.sample.expected" "${SCRIPT_DIR}/results/.env.simple.result"
+test "${SCRIPT_DIR}/test.with-comments.expect" "${SCRIPT_DIR}/samples/.env.with-comments.sample.expected" "${SCRIPT_DIR}/results/.env.with-comments.result"
+
+# -----
 
 echo $'\n'${ErrCount} 'Errors.'
 if [ ${ErrCount} -eq 0 ]; then
-  echo "All tests passed."
+  echo "All ${TestCount} tests pass."
   exit 0
 else
-  echo "Tests failed."
+  echo "${ErrCount} of ${TestCount} tests failed."
   exit 1
 fi
