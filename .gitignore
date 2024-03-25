@@ -1,8 +1,5 @@
-
 .DS_Store
+/.idea
 /settings.json
 /docker-compose.yaml
-
-/generated.env
 /results
-/.idea

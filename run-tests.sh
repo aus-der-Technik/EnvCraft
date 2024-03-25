@@ -29,16 +29,16 @@ function test(){
 
   TestCount=$(expr ${TestCount} + 1)
   rm -f "${target}"
-  expect "${test}"
-  cmp -s "${src}" "${target}" \
+  expect "${SCRIPT_DIR}/tests/${test}"
+  cmp -s "${SCRIPT_DIR}/tests/samples/${src}" "${SCRIPT_DIR}/${target}" \
     || err "Generated file ${target} differs from expected result."
 }
 
 # -----
 # Test Suite:
 
-test "${SCRIPT_DIR}/test.only-defaults.expect" "${SCRIPT_DIR}/samples/.env.simple.sample.expected" "${SCRIPT_DIR}/results/.env.simple.result"
-test "${SCRIPT_DIR}/test.with-comments.expect" "${SCRIPT_DIR}/samples/.env.with-comments.sample.expected" "${SCRIPT_DIR}/results/.env.with-comments.result"
+test "test.only-defaults.expect" ".env.simple.sample.expected" "results/.env.simple.result"
+test "test.with-comments.expect" ".env.with-comments.sample.expected" "results/.env.with-comments.result"
 
 # -----
 
