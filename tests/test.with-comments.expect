@@ -1,6 +1,10 @@
 #!/usr/bin/expect
 
-spawn ./bapa.sh tests/samples/.env.with-comments.sample ./results/.env.with-comments.result
+set BAPA [lindex $argv 0]
+set IN [lindex $argv 1]
+set OUT [lindex $argv 2]
+
+spawn ${BAPA} ${IN} ${OUT}
 expect "Please enter a value for \"VALUE1\" (default: <empty>):"
 send -- "valueForValue1\n"
 expect "Please enter a value for \"VALUE2\" (default: <empty>):"

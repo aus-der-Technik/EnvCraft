@@ -29,7 +29,7 @@ function test(){
 
   TestCount=$(expr ${TestCount} + 1)
   rm -f "${target}"
-  expect "${SCRIPT_DIR}/tests/${test}"
+  expect "${SCRIPT_DIR}/tests/${test}" "./bapa.sh" "${SCRIPT_DIR}/tests/samples/${src}" "${SCRIPT_DIR}/${target}"
   cmp -s "${SCRIPT_DIR}/tests/samples/${src}" "${SCRIPT_DIR}/${target}" \
     || err "Generated file ${target} differs from expected result."
 }
