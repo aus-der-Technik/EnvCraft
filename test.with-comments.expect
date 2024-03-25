@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+spawn ./bapa.sh samples/.env.with-comments.sample results/.env.with-comments.result
+expect "Please enter a value for \"VALUE1\" (default: <empty>):"
+send -- "valueForValue1\n"
+expect "Please enter a value for \"VALUE2\" (default: <empty>):"
+send -- "\n"
+expect "Please enter a value for \"VALUE3\" (default: <empty>):"
+send -- "valueForValue3\n"
+expect eof
