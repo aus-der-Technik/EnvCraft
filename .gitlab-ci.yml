@@ -6,6 +6,9 @@ Test:
   image:
     name: ubuntu:24.04
     entrypoint: [ "" ]
+  before_script:
+    - apt update
+    - apt install -y expect
   script:
     - ./run-tests.sh
   artifacts:

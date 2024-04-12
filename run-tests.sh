@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-which expect || err "Expect not found" 1
 mkdir -p "${SCRIPT_DIR}/results"
 
 ErrCount=0
@@ -37,6 +36,7 @@ function test(){
 # -----
 # Test Suite:
 
+which expect || err "Expect not found" 1
 test "test.only-defaults.expect" ".env.simple.sample.expected" "results/.env.simple.result"
 test "test.with-comments.expect" ".env.with-comments.sample.expected" "results/.env.with-comments.result"
 
