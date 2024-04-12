@@ -41,6 +41,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset path: ./envcraft.sh
+          asset_path: ./envcraft.sh
           asset_name: envcraft
           asset_content_type: application/x-sh
