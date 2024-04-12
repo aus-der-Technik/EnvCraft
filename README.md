@@ -4,6 +4,20 @@ EnvCraft is an .env file creator. You feed it with a given env.sample file and E
 .env file while asking you for all mandatory values.
 EnvCraft supports defining default values ("press return to accept") and custom prompts.
 
+## Installation
+
+On **macOS** you should use [brew](https://brew.sh)
+
+```shell
+brew tap aus-der-Technik/tap
+brew update
+brew install aus-der-technik/tap/envcraft
+```
+
+For **Linux**, please download the latest [release](https://github.com/aus-der-Technik/EnvCraft/releases) and install 
+envcraft in /usr/local/bin
+
+
 ## Usage
 
 `./envcraft.sh [input file] [output file (defaults to .env)]`
