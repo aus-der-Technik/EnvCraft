@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 #
-# bapaEnv-bashparser-env-writer
+# EnvCraft
 #
-# This Script parses the bapa file format, ask the user for input for each variable and
+# This Script parses the EnvCraft-file format, ask the user for input for each variable and
 # writes it to dotenv.
 #
-# Bapa file format:
+# EnvCraft file format:
 # ```
 # # This is a comment and should be ignored
 # default: 5
@@ -101,7 +101,7 @@ readFile(){
 	fi
 }
 
-# Takes in the Bapa file format and outputs a dotenv
+# Takes in the EnvCraft file format and outputs a dotenv
 generateEnv(){
 	local variable default prompt
 	IFS=';' read -r variable default prompt <<< "$line"
