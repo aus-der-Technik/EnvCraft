@@ -1,0 +1,19 @@
+name: Build Nightly
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: apt update; apt install -y expect
+      - name: Run tests
+        run: ./run-tests.sh
