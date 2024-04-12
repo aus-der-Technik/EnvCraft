@@ -1,0 +1,14 @@
+stages:
+- test
+
+Test:
+  stage: test
+  image:
+    name: ubuntu:24.04
+    entrypoint: [ "" ]
+  script:
+    - ./run-tests.sh
+  artifacts:
+    paths:
+      - envcraft.sh
+    when: on_success
