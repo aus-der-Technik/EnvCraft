@@ -14,6 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: apt update; apt install -y expect
+        run: sudo apt update; sudo apt install -y expect
       - name: Run tests
         run: ./run-tests.sh
