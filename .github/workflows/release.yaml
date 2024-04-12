@@ -18,6 +18,13 @@ jobs:
       - name: Run tests
         run: ./run-tests.sh
 
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
       - name: Create Release
         uses: actions/create-release@v1
         id: create_release
@@ -28,15 +35,14 @@ jobs:
           tag_name: ${{ github.ref }}
           body_path: CHANGELOG.md
         env:
-          GITHUB_TOKEN: ${( secrets. GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${( secrets.GITHUB_TOKEN }}
 
       - name: Upload Release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets. GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset path: envcraft.sh
           asset_name: envcraft
           asset_content_type: application/x-sh
-          
