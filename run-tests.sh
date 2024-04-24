@@ -39,7 +39,9 @@ function test(){
 which expect || err "Expect not found" 1
 test "test.only-defaults.expect" ".env.simple.sample.expected" "results/.env.simple.result"
 test "test.with-comments.expect" ".env.with-comments.sample.expected" "results/.env.with-comments.result"
-
+test "test.with-hyphens.expect" ".env.with-hyphens.sample.expected" "results/.env.with-hyphens.result"
+test "test.with-underscores.expect" ".env.with-underscores.sample.expected" "results/.env.with-underscores.result"
+test "test.with-emojis.expect" ".env.with-emojis.sample.expected" "results/.env.with-emojis.result"
 # -----
 
 echo $'\n'${ErrCount} 'Errors.'
