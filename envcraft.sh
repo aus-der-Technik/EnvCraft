@@ -111,7 +111,7 @@ generateEnv(){
   fi
   source "${OUTPUT_FILE}"
 
-  if [ -z "${!variable}" ]; then
+  if [[ $(declare -p variable 2>/dev/null) =~ "declare -- variable=" ]]; then
     echo -n "${prompt:-Please enter a value for \"${variable}\"} (default: ${default:-<empty>}): "
     IFS= read -r VALUE < /dev/tty
 

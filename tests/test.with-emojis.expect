@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+set ENVCRAFT [lindex $argv 0]
+set IN [lindex $argv 1]
+set OUT [lindex $argv 2]
+
+spawn ${ENVCRAFT} ${IN} ${OUT}
+expect "Please enter a value for \"😃\" (default: <empty>):"
+send -- "smile\n"
+expect eof
